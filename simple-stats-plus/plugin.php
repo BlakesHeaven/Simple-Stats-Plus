@@ -1,8 +1,9 @@
 <?php
 /*
 	This plugin uses the javascript library https://github.com/gionkunz/chartist-js
+	This plugin originated from Bludit's Simple Stats.
 */
-class pluginSimpleStats extends Plugin {
+class pluginSimpleStatsPlus extends Plugin {
 
 	private $loadOnController = array(
 		'dashboard'
@@ -14,15 +15,15 @@ class pluginSimpleStats extends Plugin {
 
 		// Fields and default values for the database of this plugin
 		$this->dbFields = array(
-			'enableOngoingCounter'=>false,
+			'enableOngoingCounter'=>true,
 			'resetOngoingCounterValue'=>'-1',
 			'chartType'=>'Weekly',
-			'numberOfDaysToKeep'=>7,
+			'numberOfDaysToKeep'=>8,
 			'numberOfWeeksToKeep'=>7,
 			'numberOfMonthsToKeep'=>13,
-			'showContentStats'=>false,
+			'showContentStats'=>true,
 			'pageSessionActiveMinutes'=>60,
-			'excludeAdmins'=>false
+			'excludeAdmins'=>true
 		);
 	}
 
@@ -33,6 +34,14 @@ class pluginSimpleStats extends Plugin {
 		$html  = '<div class="alert alert-primary" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
+
+		// Check if the Bludit plugin Simple Stats is activated
+		if (pluginActivated('pluginSimpleStats')) {
+			// Show an alert about the conflict of the original plugin
+			$html .= '<div class="alert alert-warning" role="alert">';
+			$html .= $L->get('bludit-plugin-simple-stats-active-warning');
+			$html .= '</div>';
+		}
 
 		// Define ongoing running total counter
 		$html .= '<div>';
@@ -96,17 +105,14 @@ class pluginSimpleStats extends Plugin {
 		$html .= '<input id="jspageSessionActiveMinutes" name="pageSessionActiveMinutes" type="number" value="'.$this->getValue('pageSessionActiveMinutes').'">';
 		$html .= '<span class="tip">'.$L->get('page-session-active-minutes-tip').'</span>';
 		$html .= '</div>';
-		
-		// For uses of BLUDIT PRO
-		if (defined('BLUDIT_PRO')) {
-			$html .= '<div>';
-			$html .= '<label>'.$L->get('Exclude administrators users').'</label>';
-			$html .= '<select name="excludeAdmins">';
-			$html .= '<option value="true" '.($this->getValue('excludeAdmins')===true?'selected':'').'>'.$L->get('enable-section').'</option>';
-			$html .= '<option value="false" '.($this->getValue('excludeAdmins')===false?'selected':'').'>'.$L->get('disable-section').'</option>';
-			$html .= '</select>';
-			$html .= '</div>';
-		}
+
+		$html .= '<div>';
+		$html .= '<label>'.$L->get('exclude-admin-users').'</label>';
+		$html .= '<select name="excludeAdmins">';
+		$html .= '<option value="true" '.($this->getValue('excludeAdmins')===true?'selected':'').'>'.$L->get('enable-section').'</option>';
+		$html .= '<option value="false" '.($this->getValue('excludeAdmins')===false?'selected':'').'>'.$L->get('disable-section').'</option>';
+		$html .= '</select>';
+		$html .= '</div>';
 
 		return $html;
 	}
@@ -300,37 +306,38 @@ EOF;
 		return $html.PHP_EOL.$script.PHP_EOL;
 	}
 
-	public function siteBodyEnd()
+	public function siteBodyBegin()
 	{
 		global $page;
 		$pageTitleHash = hash(adler32,$page->title(),false);
 		$pageSessionLimit = (60*$this->getValue('pageSessionActiveMinutes')); // 60*60=360
+		$excludeAdmins = ($this->getValue('excludeAdmins'));
 
-		// Counters will be increased only once a page title session to prevent F5 increases.
-		if ( (!isset($_SESSION[$pageTitleHash])) || ((time()-$_SESSION[$pageTitleHash]) > $pageSessionLimit ) )
-		{
-			//Set Variable for this session so user cannot increase counter by pressing F5
-			$_SESSION[$pageTitleHash] = time();
-		
-			IF ($this->getValue('numberOfDaysToKeep') > 0) {
-				$this->addVisitorDaily();
+		IF (!$excludeAdmins) { 
+				// Counters will be increased only once a page title session to prevent F5 increases.
+				if ( (!isset($_SESSION[$pageTitleHash])) || ((time()-$_SESSION[$pageTitleHash]) > $pageSessionLimit ) )
+				{
+					//Set Variable for this session so user cannot increase counter by pressing F5
+					$_SESSION[$pageTitleHash] = time();
+				
+					IF ($this->getValue('numberOfDaysToKeep') > 0) {
+						$this->addVisitorDaily();
+					}
+
+					IF ($this->getValue('numberOfWeeksToKeep') > 0) {
+						$this->addVisitorWeekly();
+					}
+
+					IF ($this->getValue('numberOfMonthsToKeep') > 0) {
+						$this->addVisitorMonthly();
+					}
+
+					IF (enableOngoingCounter) {
+						$this->increaseCounter();
+					}
+				}
 			}
-
-			IF ($this->getValue('numberOfWeeksToKeep') > 0) {
-				$this->addVisitorWeekly();
-			}
-
-			IF ($this->getValue('numberOfMonthsToKeep') > 0) {
-				$this->addVisitorMonthly();
-			}
-
-			IF (enableOngoingCounter) {
-				$this->increaseCounter();
-			}
-		}
-    }
-
-
+	}
 	// Keep only number of logs defined in numberOfDaysToKeep, numberOfWeeksToKeep & numberOfMonthsToKeep.
 	public function deleteOldLogs( $periodType, $numberToKeep )
 	{
@@ -413,20 +420,12 @@ EOF;
 		catch (Exception $e) {
 			echo 'Caught exception: '.$e->getMessage();
 		}
-
-// $formatStyle=NumberFormatter::TYPE_INT32;
-// $formatter= new NumberFormatter($locale, $formatStyle);
-// echo "Running total = ".$formatter->format($runningTotals['runningTotals']['pageCounter']);
-
 	}
 
 	// Add a line to the current Daily log
 	// The line is a json array with the hash IP of the visitor and the time
 	public function addVisitorDaily()
 	{
-		if (Cookie::get('BLUDIT-KEY') && defined('BLUDIT_PRO') && $this->getValue('excludeAdmins')) {
-			return false;
-		}
 
 		$currentTime = Date::current('Y-m-d H:i:s');
 		$ip = TCP::getIP();
@@ -444,9 +443,6 @@ EOF;
 	// The line is a json array with the hash IP of the visitor and the time
 	public function addVisitorWeekly()
 	{
-		if (Cookie::get('BLUDIT-KEY') && defined('BLUDIT_PRO') && $this->getValue('excludeAdmins')) {
-			return false;
-		}
 
 		$mondayDateTimeThisWeek = date("Y-m-d", strtotime('monday this week')).' '. date('H:i:s', strtotime("now"));
 
@@ -467,9 +463,6 @@ EOF;
 	// The line is a json array with the hash IP of the visitor and the time
 	public function addVisitorMonthly()
 	{
-		if (Cookie::get('BLUDIT-KEY') && defined('BLUDIT_PRO') && $this->getValue('excludeAdmins')) {
-			return false;
-		}
 
 		$firstDateTimeOfThisThisMonth = date("Y-m-d", strtotime('first day of this month')).' '. date('H:i:s', strtotime("now"));
 

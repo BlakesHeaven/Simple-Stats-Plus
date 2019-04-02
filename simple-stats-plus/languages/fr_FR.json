@@ -5,6 +5,7 @@
 		"description": "Affiche le nombre de visiteurs par période sur votre tableau de bord."
 	},
 
+	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Statistiques' est toujours actif ... il est fortement conseillé de le désactiver.",
 	"ongoing-counter-label": "Compteur en cours",
 	"ongoing-counter-tip": "Lorsque cette option est activée, un total courant est collecté.",
 	"enable-section": "Enabled",
@@ -32,6 +33,8 @@
 
 	"page-session-active-minutes": "Minutes de session actives:",
 	"page-session-active-minutes-tip": "Une session est conservée pour chaque page afin d’empêcher l’actualisation «F5» afin d’augmenter le nombre de fois.",
+	
+	"exclude-admin-users": "Exclure les administrateurs des compteurs croissants.",
 
 	"stats-title-label": "Pages vues & visiteurs uniques",
 

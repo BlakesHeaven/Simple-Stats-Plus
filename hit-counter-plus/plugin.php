@@ -1,6 +1,6 @@
 <?php
 
-class pluginHitCounter extends Plugin {
+class pluginHitCounterPlus extends Plugin {
 
 	public function init()
 	{
@@ -20,12 +20,12 @@ class pluginHitCounter extends Plugin {
 	{
 		global $L;
 
-		// Check if the plugin Simple Stats is activated
-		if (!pluginActivated('pluginSimpleStats')) {
+		// Check if the plugin Simple Stats Plus is activated
+		if (!pluginActivated('pluginSimpleStatsPlus')) {
 			// Show an alert about the dependency of the plugin
 			$html  = '<div class="alert alert-warning" role="alert">';
 			$html .= $L->get('plugin-depends-on-warning');
-			$html .= '<ul class="m-0"><li>Simple Stats</li></ul>';
+			$html .= '<ul class="m-0"><li>"Simple Stats Plus" by BlakesHeaven</li></ul>';
 			$html .= '</div>';
 
 			// Hidden form buttons. Save and Cancel buttons.
@@ -33,11 +33,23 @@ class pluginHitCounter extends Plugin {
 			return $html;
 		}
 
+		
 		// Show the description of the plugin in the settings
 		$html  = '<div class="alert alert-primary" role="alert">';
 		$html .= $this->description();
 		$html .= '</div>';
 
+		// Check if the Bludit plugin 'Hit Counter' is activated
+		if (pluginActivated('pluginHitCounter')) {
+			// Show an alert about the conflict of the original plugin
+			$html .= '<div class="alert alert-warning" role="alert">';
+			$html .= $L->get('bludit-plugin-hit-counter-active-warning');
+			$html .= '</div>';
+
+			// Hidden form buttons. Save and Cancel buttons.
+			$this->formButtons = false;
+		}
+		
 		// Label of the plugin to show in the sidebar
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('sidebar-label').'</label>';
@@ -114,9 +126,9 @@ class pluginHitCounter extends Plugin {
 		$formatStyle=NumberFormatter::TYPE_INT32;
 		$formatter= new NumberFormatter($locale, $formatStyle);
 
-		// Check if the plugin Simple Stats is activated
-		if (pluginActivated('pluginSimpleStats')) {
-			// Get the object of the plugin Simple Stats
+		// Check if the plugin Simple Stats Plus is activated
+		if (pluginActivated('pluginSimpleStatsPlus')) {
+			// Get the object of the plugin Simple Stats Plus
 			global $plugins;
 
 			IF (	($this->getValue('showRunningTotalValue') )
@@ -128,7 +140,7 @@ class pluginHitCounter extends Plugin {
 					||	($this->getValue('showMonthlyUniqueValue'))	)
 			{
 
-				$simpleStats = $plugins['all']['pluginSimpleStats'];
+				$simpleStats = $plugins['all']['pluginSimpleStatsPlus'];
 
 				$html  = '<div class="plugin plugin-hit-counter">';
 				$html .= '<h2 class="plugin-label">'.$this->getValue('sidebarLabel').'</h2>';

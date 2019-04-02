@@ -5,6 +5,7 @@
 		"description": "Zeigt die Anzahl der Besucher pro Zeitraum in Ihrem Dashboard an."
 	},
 
+	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Einfache Statistik' ist noch aktiv ... Sie sollten sie unbedingt deaktivieren.",
 	"ongoing-counter-label": "Kontinuierlicher Zähler",
 	"ongoing-counter-tip": "Wenn aktiviert, wird eine laufende laufende Summe erfasst.",
 	"enable-section": "aktiviert",
@@ -32,6 +33,8 @@
 
 	"page-session-active-minutes": "Aktive Minuten der Sitzungssitzung:",
 	"page-session-active-minutes-tip": "Für jede Seite wird eine Sitzung gehalten, um die Aktualisierung von 'F5' zu verhindern, um die Anzahl falsch zu erhöhen.",
+	
+	"exclude-admin-users": "Schließen Sie Administratoren von der Erhöhung der Leistungsindikatoren aus.",
 
 	"stats-title-label": "Seitenaufrufe und eindeutige Besucher",
 

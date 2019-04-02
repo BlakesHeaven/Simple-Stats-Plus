@@ -5,6 +5,7 @@
 		"description": "Toont het aantal bezoeken per periode op het dashboard."
 	},
 
+	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Eenvoudige statistieken' is nog steeds actief ... u wordt dringend geadviseerd om het uit te schakelen.",
 	"ongoing-counter-label": "Lopende teller",
 	"ongoing-counter-tip": "Indien ingeschakeld, wordt een lopend lopend totaal verzameld.",
 	"enable-section": "Ingeschakeld",
@@ -32,6 +33,8 @@
 
 	"page-session-active-minutes": "Actieve minuten van de sessie:",
 	"page-session-active-minutes-tip": "Voor elke pagina wordt een sessie gehouden om te voorkomen dat 'F5' wordt vernieuwd om het aantal vals te verhogen.",
+	
+	"exclude-admin-users": "Sluit beheerders uit om de teller te verhogen.",
 
 	"stats-title-label": "Paginaweergaven en unieke bezoekers",
 

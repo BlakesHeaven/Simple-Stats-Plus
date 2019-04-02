@@ -5,6 +5,7 @@
 		"description": "Panonuzda dönem başına ziyaretçi sayısını göster."
 	},
 
+	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Basit İstatistikler' hala aktiftir ... devre dışı bırakmanız şiddetle tavsiye edilir.",
 	"ongoing-counter-label": "Devam eden sayaç",
 	"ongoing-counter-tip": "Etkinleştirildiğinde, devam eden bir toplam çalışma toplanır.",
 	"enable-section": "Etkin",
@@ -32,6 +33,8 @@
 
 	"page-session-active-minutes": "Sayfa oturumu aktif dakikaları:",
 	"page-session-active-minutes-tip": "Sayıları artırmak için 'F5' yenilemesini önlemek için her sayfa için bir oturum düzenlenir.",
+	
+	"exclude-admin-users": "Yöneticileri artan sayaçlardan uzak tutun.",
 
 	"stats-title-label": "Sayfa Görünümleri ve Benzersiz Ziyaretçiler",
 

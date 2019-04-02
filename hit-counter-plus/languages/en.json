@@ -1,11 +1,12 @@
 {
 	"plugin-data":
 	{
-		"name": "Hit Counter",
-		"description": "Depends on SimpletStats - Shows the number of Page Hits or Unique Visitors per day in the sidebar."
+		"name": "Hit Counter Plus",
+		"description": "Depends on 'Simple Stats Plus' - Enhanced from Bludit's simple Hit Counter, it shows the number of Page Hits or Unique Visitors per</br>Day, Week & Month, plus the running total, in the sidebar."
 	},
 	
 	"plugin-depends-on-warning": "This plugin depends on the following plugins.",
+	"bludit-plugin-hit-counter-active-warning": "Bludit's simple 'Hit Counter' is still active... you are strongly advised to disable it.",
 	"sidebar-label": "Sidebar Label",
 	"sidebar-label-tip": "This title is almost always used in the sidebar of the site.",
 

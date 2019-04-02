@@ -5,6 +5,7 @@
 		"description": "Muestra el número de visitantes por período en tu panel"
 	},
 
+	"bludit-plugin-simple-stats-active-warning": "Bludit's 'las estadísticas simples' todavía están activas ... se recomienda encarecidamente que las deshabilite.",
 	"ongoing-counter-label": "Contador continuo",
 	"ongoing-counter-tip": "Cuando está habilitado, se recopila un total acumulado en curso",
 	"enable-section": "Habilitado",
@@ -32,6 +33,8 @@
 
 	"page-session-active-minutes": "Página sesión minutos activos:",
 	"page-session-active-minutes-tip": "Se mantiene una sesión para cada página para evitar la actualización de 'F5' para aumentar los conteos falsamente.",
+	
+	"exclude-admin-users": "Excluir a los administradores de aumentar los contadores.",
 
 	"stats-title-label": "Vistas de página y visitantes únicos",
 

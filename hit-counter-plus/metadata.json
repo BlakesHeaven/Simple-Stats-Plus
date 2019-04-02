@@ -1,10 +1,10 @@
 {
-	"author": "Bludit",
+	"author": "David Blake",
 	"email": "",
-	"website": "https://plugins.bludit.com",
+	"website": "https://github.com/BlakesHeaven/Simple-Stats-Plus",
 	"version": "3.8.1",
 	"releaseDate": "2019-02-28",
 	"license": "MIT",
 	"compatible": "3.8.1",
-	"notes": ""
+	"notes": "Originated from Bludit's simple Hit Counter, but includes more stastistics."
 }
