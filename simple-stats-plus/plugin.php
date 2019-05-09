@@ -22,7 +22,7 @@ class pluginSimpleStatsPlus extends Plugin {
 			'numberOfWeeksToKeep'=>7,
 			'numberOfMonthsToKeep'=>13,
 			'showContentStats'=>true,
-			'pageSessionActiveMinutes'=>60,
+			'pageSessionActiveMinutes'=>5,
 			'excludeAdmins'=>true
 		);
 	}
@@ -90,7 +90,7 @@ class pluginSimpleStatsPlus extends Plugin {
 		$html .= '<input id="jsnumberOfMonthsToKeep" name="numberOfMonthsToKeep" type="number" value="'.$this->getValue('numberOfMonthsToKeep').'">';
 		$html .= '<span class="tip">'.$L->get('number-of-months-tip').'</span>';
 		$html .= '</div>';
-
+		// Define other options
 		$html .= '<div>';
 		$html .= '<label>'.$L->get('show-content-stats-label').'</label>';
 		$html .= '<select name="showContentStats">';
@@ -119,8 +119,17 @@ class pluginSimpleStatsPlus extends Plugin {
 
 	public function beforeSiteLoad()
 	{
+		$login = new Login();
+
 		if (session_status() == PHP_SESSION_NONE) {
 			session_start();
+		}
+
+		if ( $login->isLogged()) {
+			$GLOBALS['RoleName'] = $login->Role();
+		}
+		else {
+			$GLOBALS['RoleName'] = 'No Role Identified';
 		}
 	}
 
@@ -143,7 +152,8 @@ class pluginSimpleStatsPlus extends Plugin {
 	public function dashboard()
 	{
 		global $L;
-
+		$formatStyle=NumberFormatter::TYPE_INT32;
+		$formatter= new NumberFormatter(@$locale, $formatStyle);
 		$currentDate = Date::current('Y-m-d');
 		$mondayDateThisWeek = date("Y-m-d", strtotime('monday this week'));
 		$firstDateOfThisThisMonth = date("Y-m-d", strtotime('first day of this month'));
@@ -179,8 +189,8 @@ class pluginSimpleStatsPlus extends Plugin {
 $html = <<<EOF
 <div class="simple-stats-plugin">
 	<div class="my-5 pt-4 border-top">
-		<h4 class="pb-3">$chartType {$L->get('stats-title-label')}</br>($chartStartDate - $chartEndDate)</h4>
-		<h5 class="pb-3">Total Page Count: $pageCount</h5>
+		<h4 class="pb-3">$chartType {$L->get('stats-title-label')}</br>($chartStartDate to $chartEndDate)</h4>
+		<h5 class="pb-3">Total Page Count: {$formatter->format($pageCount)}</h5>
 		<div class="ct-chart ct-perfect-fourth"></div>
 
 		<!- Show all the totals for each of the current periods -->
@@ -188,16 +198,16 @@ $html = <<<EOF
 			<div class="divTableBody">
 				<div class="divTableRow">
 					<div class="divTableCell">
-						<p class="legends visits-today">{$L->get('page-view-today-label')}: $pageViewsToday</p>
-						<p class="legends unique-today">{$L->get('unique-visitors-today-label')}: $uniqueVisitorsToday</p>
+						<p class="legends visits-today">{$L->get('page-view-today-label')}: {$formatter->format($pageViewsToday)}</p>
+						<p class="legends unique-today">{$L->get('unique-visitors-today-label')}: {$formatter->format($uniqueVisitorsToday)}</p>
 					</div>
 					<div class="divTableCell">
-						<p class="legends visits-today">{$L->get('page-view-this-week-label')}: $pageViewsThisWeek</p>
-						<p class="legends unique-today">{$L->get('unique-visitors-this-week-label')}: $uniqueVisitorsThisWeek</p>
+						<p class="legends visits-today">{$L->get('page-view-this-week-label')}: {$formatter->format($pageViewsThisWeek)}</p>
+						<p class="legends unique-today">{$L->get('unique-visitors-this-week-label')}: {$formatter->format($uniqueVisitorsThisWeek)}</p>
 					</div>
 					<div class="divTableCell">
-						<p class="legends visits-today">{$L->get('page-view-this-month-label')}: $pageViewsThisMonth</p>
-						<p class="legends unique-today">{$L->get('unique-visitors-this-month-label')}: $uniqueVisitorsThisMonth</p>
+						<p class="legends visits-today">{$L->get('page-view-this-month-label')}: {$formatter->format($pageViewsThisMonth)}</p>
+						<p class="legends unique-today">{$L->get('unique-visitors-this-month-label')}: {$formatter->format($uniqueVisitorsThisMonth)}</p>
 					</div>
 				</div>
 			</div>
@@ -308,35 +318,46 @@ EOF;
 
 	public function siteBodyBegin()
 	{
+		global $WHERE_AM_I;
+		global $RoleName;		
 		global $page;
-		$pageTitleHash = hash(adler32,$page->title(),false);
-		$pageSessionLimit = (60*$this->getValue('pageSessionActiveMinutes')); // 60*60=360
+
+		switch ($WHERE_AM_I) {
+			case "search":
+				$pageTitleHash = 'search';
+				break;
+			default:
+				$pageTitleHash = ($page->uuid());
+		}
+		
+		$pageSessionLimit = (60*$this->getValue('pageSessionActiveMinutes'));	// 60*5=300 seconds
 		$excludeAdmins = ($this->getValue('excludeAdmins'));
 
-		IF (!$excludeAdmins) { 
-				// Counters will be increased only once a page title session to prevent F5 increases.
-				if ( (!isset($_SESSION[$pageTitleHash])) || ((time()-$_SESSION[$pageTitleHash]) > $pageSessionLimit ) )
-				{
-					//Set Variable for this session so user cannot increase counter by pressing F5
-					$_SESSION[$pageTitleHash] = time();
-				
-					IF ($this->getValue('numberOfDaysToKeep') > 0) {
-						$this->addVisitorDaily();
-					}
+		IF (!( $excludeAdmins AND in_array($RoleName, array("editor","admin") )) ) 
+		{
+			// Counters will be increased only once per page title session to prevent abuse of F5 refresh to increase count.
+			IF ( (!isset($_SESSION[$pageTitleHash])) || ((time()-$_SESSION[$pageTitleHash]) > $pageSessionLimit ) )
+			{
+				//Set Variable for this session so user cannot increase counter by pressing F5
+				$_SESSION[$pageTitleHash] = time();
+			
+				IF ($this->getValue('numberOfDaysToKeep') > 0) {
+					$this->addVisitorDaily();
+				}
 
-					IF ($this->getValue('numberOfWeeksToKeep') > 0) {
-						$this->addVisitorWeekly();
-					}
+				IF ($this->getValue('numberOfWeeksToKeep') > 0) {
+					$this->addVisitorWeekly();
+				}
 
-					IF ($this->getValue('numberOfMonthsToKeep') > 0) {
-						$this->addVisitorMonthly();
-					}
+				IF ($this->getValue('numberOfMonthsToKeep') > 0) {
+					$this->addVisitorMonthly();
+				}
 
-					IF (enableOngoingCounter) {
-						$this->increaseCounter();
-					}
+				IF ($this->getValue('enableOngoingCounter')) {
+					$this->increaseCounter();
 				}
 			}
+		}
 	}
 	// Keep only number of logs defined in numberOfDaysToKeep, numberOfWeeksToKeep & numberOfMonthsToKeep.
 	public function deleteOldLogs( $periodType, $numberToKeep )

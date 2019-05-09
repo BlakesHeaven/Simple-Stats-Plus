@@ -124,7 +124,7 @@ class pluginHitCounterPlus extends Plugin {
 	{
 		global $L;
 		$formatStyle=NumberFormatter::TYPE_INT32;
-		$formatter= new NumberFormatter($locale, $formatStyle);
+		$formatter= new NumberFormatter(@$locale, $formatStyle);
 
 		// Check if the plugin Simple Stats Plus is activated
 		if (pluginActivated('pluginSimpleStatsPlus')) {

@@ -2,8 +2,8 @@
 	"author": "David Blake",
 	"email": "",
 	"website": "https://github.com/BlakesHeaven/Simple-Stats-Plus",
-	"version": "3.8.2",
-	"releaseDate": "2019-04-02",
+	"version": "3.8.3",
+	"releaseDate": "2019-05-09",
 	"license": "MIT",
 	"compatible": "3.8.x",
 	"notes": "Originated from Bludit's Simple Stats, but includes more stastistics."
