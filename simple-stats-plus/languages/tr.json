@@ -8,6 +8,19 @@
 	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Basit İstatistikler' hala aktiftir ... devre dışı bırakmanız şiddetle tavsiye edilir.",
 	"ongoing-counter-label": "Devam eden sayaç",
 	"ongoing-counter-tip": "Etkinleştirildiğinde, devam eden bir toplam çalışma toplanır.",
+
+	"individual-page-counter-label": "Gather data for individual pages:",
+	"individual-page-counter-tip": "When enabled, an ongoing running total is collected for individual published pages unles Category is 'Hidden'.",
+
+	"show-static-page-count-label": "Show static page count:",
+	"show-static-page-count-tip": "Disabled by default because static pages, especially home page, are likely to be always most visited.",
+
+	"horizontal-charts-label": "Horizontal Charts:",
+	"horizontal-charts-tip": "Vertical by default; enable to have charts display horizontally.",
+	
+	"number-of-pagestats-label": "Show Top x Individual Page Stats:",
+	"number-of-pagestats-tip": "Requires 'Running Totals', 'Show Content Stats' and 'Gather data for individual pages' to be enabled.",	
+	
 	"enable-section": "Etkin",
 	"disable-section": "Devre dışı",
 
@@ -45,9 +58,13 @@
 	"page-view-this-month-label": "Bu ay görüntülenen sayfalar",
 	"unique-visitors-this-month-label": "Bu ay benzersiz ziyaretçiler",
 
+	"combi-content-page-stats-label": "Content Count by Type and Individual Page Views Statistics",
 	"content-statistics-label": "İçerik İstatistikleri",
-	"tab-chart-label": "Grafik",
-	"tab-table-label": "Tablo",
+	"page-statistics-label": "Individual Page Views Statistics",
+	"tab-cont-chart-label": "Content Chart",
+	"tab-cont-table-label": "Content Table",
+	"tab-page-chart-label": "Grafik",
+	"tab-page-table-label": "Tablo",
 	"published-label": "Yayınlandı",
 	"static-label": "statik",
 	"drafts-label": "taslaklar",

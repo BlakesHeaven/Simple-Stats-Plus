@@ -8,6 +8,18 @@
 	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Statistiques' est toujours actif ... il est fortement conseillé de le désactiver.",
 	"ongoing-counter-label": "Compteur en cours",
 	"ongoing-counter-tip": "Lorsque cette option est activée, un total courant est collecté.",
+	"individual-page-counter-label": "Rassemblez des données pour des pages individuelles:",
+	"individual-page-counter-tip": "Lorsqu'elle est activée, un total en cours d'exécution est collecté pour les pages publiées individuelles, sauf si la catégorie est 'Cachée'.",
+
+	"show-static-page-count-label": "Afficher le nombre de pages statiques:",
+	"show-static-page-count-tip": "Désactivé par défaut car les pages statiques, en particulier la page d'accueil, sont susceptibles d'être toujours les plus visitées.",
+
+	"horizontal-charts-label": "Graphiques horizontaux:",
+	"horizontal-charts-tip": "Vertical par défaut; permet d'afficher les graphiques horizontalement.",
+	
+	"number-of-pagestats-label": "Afficher les statistiques des pages principales x individuelles:",
+	"number-of-pagestats-tip": "Nécessite l'activation de 'Totaux cumulés', 'Afficher les statistiques de contenu' et 'Collecter des données pour des pages individuelles'.",	
+	
 	"enable-section": "Enabled",
 	"disable-section": "Disabled",
 
@@ -16,7 +28,7 @@
 	"reset-counter-tip-two": "Pour définir, enregistrer en tant que nombre zéro ou positif, accédez au site Web à déclencher, remettez-le à -1.",
 
 	"chart-type-label": "Type de graphique",
-	"daily-chart": "Daily",
+	"daily-chart": "du quotidien",
 	"weekly-chart": "hebdomadaire",
 	"monthly-chart": "mensuelle",
 	"chart-type-tip": "Cette option modifie ce que le graphique affiche par défaut.",
@@ -45,12 +57,16 @@
 	"page-view-this-month-label": "Pages vues ce mois-ci",
 	"unique-visitors-this-month-label": "Visiteurs uniques ce mois-ci",
 
+	"combi-content-page-stats-label": "Nombre de contenu par type et statistiques de vues de page individuelles",
 	"content-statistics-label": "Statistiques du contenu",
+	"page-statistics-label": "Statistiques des vues de page individuelles",
+	"tab-cont-chart-label": "Tableau de contenu",
+	"tab-cont-table-label": "Table de contenu",
 	"tab-chart-label": "Graphique",
 	"tab-table-label": "Tableau",
 	"published-label": "publié",
 	"static-label": "statique",
-	"drafts-label": "drafts",
+	"drafts-label": "brouillons",
 	"scheduled-label": "programmé",
 	"sticky-label": "collant",
 	"categories-label": "catégories",

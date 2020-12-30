@@ -8,6 +8,19 @@
 	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Eenvoudige statistieken' is nog steeds actief ... u wordt dringend geadviseerd om het uit te schakelen.",
 	"ongoing-counter-label": "Lopende teller",
 	"ongoing-counter-tip": "Indien ingeschakeld, wordt een lopend lopend totaal verzameld.",
+
+	"individual-page-counter-label": "Verzamel gegevens voor individuele pagina's:",
+	"individual-page-counter-tip": "Indien ingeschakeld, wordt een doorlopend lopend totaal verzameld voor individuele gepubliceerde pagina's, tenzij de categorie 'Verborgen' is.",
+
+	"show-static-page-count-label": "Toon statisch aantal pagina's:",
+	"show-static-page-count-tip": "Standaard uitgeschakeld omdat statische pagina's, vooral de startpagina, waarschijnlijk altijd het meest worden bezocht.",
+
+	"horizontal-charts-label": "Horizontale grafieken:",
+	"horizontal-charts-tip": "Standaard verticaal; inschakelen om grafieken horizontaal weer te geven.",
+	
+	"number-of-pagestats-label": "Toon top x individuele paginastatistieken:",
+	"number-of-pagestats-tip": "Vereist dat 'Lopende totalen', 'Inhoudsstatistieken weergeven' en 'Gegevens verzamelen voor individuele pagina's' zijn ingeschakeld.",	
+	
 	"enable-section": "Ingeschakeld",
 	"disable-section": "Uitgeschakeld",
 
@@ -45,9 +58,13 @@
 	"page-view-this-month-label": "Pagina's bekeken deze maand",
 	"unique-visitors-this-month-label": "Unieke bezoekers deze maand",
 
+	"combi-content-page-stats-label": "Inhoud tellen per type en statistieken voor individuele paginaweergaven",
 	"content-statistics-label": "Contentstatistieken",
-	"tab-chart-label": "Grafiek",
-	"tab-table-label": "Tabel",
+	"page-statistics-label": "Individuele paginaweergaven Statistieken",
+	"tab-cont-chart-label": "Inhoudsoverzicht",
+	"tab-cont-table-label": "Inhoudstabel",
+	"tab-page-chart-label": "Grafiek",
+	"tab-page-table-label": "Tabel",
 	"published-label": "gepubliceerd",
 	"static-label": "statisch",
 	"drafts-label": "dammen",

@@ -8,6 +8,19 @@
 	"bludit-plugin-simple-stats-active-warning": "Bludit's 'las estadísticas simples' todavía están activas ... se recomienda encarecidamente que las deshabilite.",
 	"ongoing-counter-label": "Contador continuo",
 	"ongoing-counter-tip": "Cuando está habilitado, se recopila un total acumulado en curso",
+
+	"individual-page-counter-label": "Reúna datos para páginas individuales:",
+	"individual-page-counter-tip": "Cuando está habilitado, se recopila un total acumulado continuo para las páginas publicadas individuales a menos que la Categoría sea 'Oculto'.",
+
+	"show-static-page-count-label": "Mostrar recuento de páginas estáticas:",
+	"show-static-page-count-tip": "Desactivado de forma predeterminada porque es probable que las páginas estáticas, especialmente la página de inicio, sean siempre las más visitadas.",
+
+	"horizontal-charts-label": "Gráficos horizontales:",
+	"horizontal-charts-tip": "Vertical por defecto; habilite para que los gráficos se muestren horizontalmente.",
+	
+	"number-of-pagestats-label": "Mostrar estadísticas de páginas principales x individuales:",
+	"number-of-pagestats-tip": "Requiere que estén habilitados 'Totales acumulados', 'Mostrar estadísticas de contenido' y 'Recopilar datos para páginas individuales'.",	
+
 	"enable-section": "Habilitado",
 	"disable-section": "Discapacitado",
 
@@ -45,9 +58,13 @@
 	"page-view-this-month-label": "Páginas vistas este mes",
 	"unique-visitors-this-month-label": "Visitantes únicos este mes",
 
+	"combi-content-page-stats-label": "Recuento de contenido por tipo y estadísticas de vistas de página individuales",
 	"content-statistics-label": "Estadísticas de contenido",
-	"tab-chart-label": "Gráfico",
-	"tab-table-label": "Tabla",
+	"page-statistics-label": "Estadísticas de vistas de página individuales",
+	"tab-cont-chart-label": "Tabla de contenido",
+	"tab-cont-table-label": "Tabla de contenido",
+	"tab-page-chart-label": "Gráfico",
+	"tab-page-table-label": "Tabla",
 	"published-label": "Publicado",
 	"static-label": "Estático",
 	"drafts-label": "Eorrador",

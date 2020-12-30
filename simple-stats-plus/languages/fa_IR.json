@@ -8,6 +8,19 @@
 	"bludit-plugin-simple-stats-active-warning": "بلودیت آمار ساده هنوز فعال است ... به شدت توصیه می شود که آن را غیرفعال کنید.",
 	"ongoing-counter-label": "شمارنده در حال اجرا",
 	"ongoing-counter-tip": "هنگامی که فعال شده است، مجموع در حال انجام در حال اجرا است",
+
+	"individual-page-counter-label": "Gather data for individual pages:",
+	"individual-page-counter-tip": "When enabled, an ongoing running total is collected for individual published pages unles Category is 'Hidden'.",
+
+	"show-static-page-count-label": "Show static page count:",
+	"show-static-page-count-tip": "Disabled by default because static pages, especially home page, are likely to be always most visited.",
+
+	"horizontal-charts-label": "Horizontal Charts:",
+	"horizontal-charts-tip": "Vertical by default; enable to have charts display horizontally.",
+	
+	"number-of-pagestats-label": "Show Top x Individual Page Stats:",
+	"number-of-pagestats-tip": "Requires 'Running Totals', 'Show Content Stats' and 'Gather data for individual pages' to be enabled.",	
+
 	"enable-section": "فعال",
 	"disable-section": "غیر فعال",
 
@@ -45,9 +58,13 @@
 	"page-view-this-month-label": "صفحات مشاهده شده در این ماه",
 	"unique-visitors-this-month-label": "بازدید کنندگان منحصر به فرد در این ماه",
 
+	"combi-content-page-stats-label": "Content Count by Type and Individual Page Views Statistics",
 	"content-statistics-label": "آمار محتوا",
-	"tab-chart-label": "نمودار",
-	"tab-table-label": "جدول",
+	"page-statistics-label": "Individual Page Views Statistics",
+	"tab-cont-chart-label": "Content Chart",
+	"tab-cont-table-label": "Content Table",
+	"tab-page-chart-label": "نمودار",
+	"tab-page-table-label": "جدول",
 	"published-label": "منتشر شده",
 	"static-label": "static",
 	"drafts-label": "پیش نویس",

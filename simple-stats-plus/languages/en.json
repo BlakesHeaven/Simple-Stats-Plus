@@ -10,10 +10,10 @@
 	"ongoing-counter-tip": "When enabled, an ongoing running total is collected.",
 
 	"individual-page-counter-label": "Gather data for individual pages:",
-	"individual-page-counter-tip": "When enabled, an ongoing running total is collected for individual published pages unles Category is 'Hidden'.",
+	"individual-page-counter-tip": "When enabled, an ongoing running total is collected for individual published pages unless Category is 'Hidden'.",
 
 	"show-static-page-count-label": "Show static page count:",
-	"show-static-page-count-tip": "Disabled by default because static pages, especially home page, are likely to be always most visited.",
+	"show-static-page-count-tip": "Disabled by default because static pages, especially the home page, are likely to be always most visited.",
 
 	"horizontal-charts-label": "Horizontal Charts:",
 	"horizontal-charts-tip": "Vertical by default; enable to have charts display horizontally.",

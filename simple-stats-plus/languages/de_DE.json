@@ -8,6 +8,19 @@
 	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Einfache Statistik' ist noch aktiv ... Sie sollten sie unbedingt deaktivieren.",
 	"ongoing-counter-label": "Kontinuierlicher Zähler",
 	"ongoing-counter-tip": "Wenn aktiviert, wird eine laufende laufende Summe erfasst.",
+
+	"individual-page-counter-label": "Sammeln Sie Daten für einzelne Seiten:",
+	"individual-page-counter-tip": "Wenn diese Option aktiviert ist, wird für einzelne veröffentlichte Seiten eine fortlaufende Gesamtsumme erfasst, es sei denn, die Kategorie ist "Versteckt".",
+
+	"show-static-page-count-label": "Statische Seitenzahl anzeigen:",
+	"show-static-page-count-tip": "Standardmäßig deaktiviert, da statische Seiten, insbesondere die Startseite, wahrscheinlich immer am häufigsten besucht werden.",
+
+	"horizontal-charts-label": "Horizontale Diagramme:",
+	"horizontal-charts-tip": "Standardmäßig vertikal; Aktivieren Sie die horizontale Anzeige von Diagrammen.",
+	
+	"number-of-pagestats-label": "Top x Einzelne Seitenstatistik anzeigen:",
+	"number-of-pagestats-tip": "Erfordert die Aktivierung von 'Laufende Summen', 'Inhaltsstatistiken anzeigen' und 'Daten für einzelne Seiten sammeln'.",	
+
 	"enable-section": "aktiviert",
 	"disable-section": "Deaktiviert",
 
@@ -45,9 +58,13 @@
 	"page-view-this-month-label": "Seit diesem Monat angesehene Seiten",
 	"unique-visitors-this-month-label": "Unique Visitors in diesem Monat",
 
+	"combi-content-page-stats-label": "Inhaltsanzahl nach Typ und Statistik der einzelnen Seitenaufrufe",
 	"content-statistics-label": "Inhaltsstatistik",
-	"tab-chart-label": "Diagramm",
-	"tab-table-label": "Tabelle",
+	"page-statistics-label": "Statistiken zu einzelnen Seitenaufrufen",
+	"tab-cont-chart-label": "Inhaltsdiagramm",
+	"tab-cont-table-label": "Inhaltstabelle",
+	"tab-page-chart-label": "Diagramm",
+	"tab-page-table-label": "Tabelle",
 	"published-label": "Veröffentlicht",
 	"static-label": "statisch",
 	"drafts-label": "Entwurf",

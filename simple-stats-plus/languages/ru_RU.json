@@ -8,6 +8,19 @@
 	"bludit-plugin-simple-stats-active-warning": "Bludit's 'Простая статистика' все еще активен ... вам настоятельно рекомендуется отключить его.",
 	"ongoing-counter-label": "постоянной счетчика",
 	"ongoing-counter-tip": "если включено, текущий итог собирается.",
+
+	"individual-page-counter-label": "Собираем данные для отдельных страниц:",
+	"individual-page-counter-tip": "Если этот параметр включен, для отдельных опубликованных страниц собирается текущая промежуточная сумма, если для категории не задано значение 'Скрытый'.",
+
+	"show-static-page-count-label": "Показать статическое количество страниц:",
+	"show-static-page-count-tip": "Отключено по умолчанию, потому что статические страницы, особенно домашняя, всегда будут наиболее посещаемыми.",
+
+	"horizontal-charts-label": "Горизонтальные графики:",
+	"horizontal-charts-tip": "По умолчанию вертикально; включить отображение графиков по горизонтали.",
+	
+	"number-of-pagestats-label": "Показывать статистику первых x отдельных страниц:",
+	"number-of-pagestats-tip": "Требуется, чтобы были включены 'Промежуточные итоги', 'Показывать статистику контента' и 'Сбор данных для отдельных страниц'.",	
+	
 	"enable-section": "включена",
 	"disable-section": "отключен",
 
@@ -45,9 +58,13 @@
 	"page-view-this-month-label": "просмотренные в этом месяце страницы",
 	"unique-visitors-this-month-label": "уникальные посетители в этом месяце",
 
+	"combi-content-page-stats-label": "Подсчет контента по типу и статистика просмотров отдельных страниц",
 	"content-statistics-label": "статистика контента",
-	"tab-chart-label": "график",
-	"tab-table-label": "таблица",
+	"page-statistics-label": "Статистика просмотров отдельных страниц",
+	"tab-cont-chart-label": "Таблица содержания",
+	"tab-cont-table-label": "Inhoudstabel",
+	"tab-page-chart-label": "график",
+	"tab-page-table-label": "таблица",
 	"published-label": "опубликовано",
 	"static-label": "статический",
 	"drafts-label": "черновики",
