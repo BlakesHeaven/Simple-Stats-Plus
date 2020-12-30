@@ -1,0 +1,81 @@
+.simple-stats-plus-plugin .ct-perfect-fourth {
+	height: 250px;
+}
+.simple-stats-plus-plugin .ct-series-a .ct-line {
+	stroke: #4586d4;
+	stroke-width: 2px;
+}
+
+.simple-stats-plus-plugin .ct-series-a .ct-point {
+	stroke: #4586d4;
+	stroke-width: 8px;
+}
+
+.simple-stats-plus-plugin .ct-series-b .ct-line {
+	stroke: #777777;
+	stroke-width: 2px;
+}
+
+.simple-stats-plus-plugin .ct-series-b .ct-point {
+	stroke: #777777;
+	stroke-width: 8px;
+}
+
+.simple-stats-plus-plugin p.legends {
+	font-size: 0.8em;
+	padding: 0;
+	margin: 0;
+}
+
+.simple-stats-plus-plugin p.visits-today {
+	color: #4586d4;
+}
+
+.simple-stats-plus-plugin p.unique-today {
+	color: #777777;
+}
+.simple-stats-plus-plugin .divTable{
+	display: table;
+	width: 100%;
+}
+.simple-stats-plus-plugin .divTableRow {
+	display: table-row;
+}
+.simple-stats-plus-plugin .divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.simple-stats-plus-plugin .divTableCell, .divTableHead {
+	border: 0px solid #999999;
+	display: table-cell;
+	padding: 0px 10px 0px 0px;
+	width: 50%;				/* See divDashTableCell below which is less specific on cell width */
+}
+
+.simple-stats-plus-plugin .divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.simple-stats-plus-plugin .divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.simple-stats-plus-plugin .divTableBody {
+	display: table-row-group;
+}
+
+.simple-stats-plus-plugin .labelStyle {
+	font-weight: bold;
+}
+/* ********************************* */
+.simple-stats-plus-plugin .divDashTableCell, .divDashTableHead {
+	border: 0px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+/* ********************************* */
+
+
+
