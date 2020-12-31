@@ -758,7 +758,15 @@ EOF;
 	{ 
 		global $L;
 
-		$diskUsage = Filesystem::bytesToHumanFileSize(Filesystem::getSize(PATH_ROOT));
+		try {
+			$diskUsage = Filesystem::bytesToHumanFileSize(Filesystem::getSize(PATH_CONTENT));
+		}
+		catch (Exception $e) {
+			echo '<div class="alert alert-warning" role="alert">'.
+								'Caught exception:<br>'.
+								$e->getMessage().'<br>'.
+								'This is caused by a broken Symbolic link - find the above path and consider deleting it.</div>';
+		}
 
 		if ($this->getValue('horizontalCharts')) {
 			// Horizontal Config
@@ -834,7 +842,7 @@ EOF;
 				<div class="tab-pane fade"	id="nav-stats-cont-table" role="tabpanel"	aria-labelledby="nav-stats-cont-table-tab">
 					<table class="table table-borderless table-sm table-striped mt-3">
 						<tbody>';
-							$html .= "<tr><th>{$L->get('disk-usage')}</th><td>$diskUsage</td></tr>";
+							$html .= "<tr><th>{$L->get('disk-usage-label')}</th><td>$diskUsage</td></tr>";
 							foreach ($ContentData['chartData'] as $th => $td) {
 								$html .= "
 									<tr>
