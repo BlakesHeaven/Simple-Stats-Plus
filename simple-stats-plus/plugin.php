@@ -28,7 +28,7 @@ class pluginSimpleStatsPlus extends Plugin {
 			'numberOfMonthsToKeep'=>13,
 			'showContentStats'=>true,
 			'pageSessionActiveMinutes'=>5,
-			'excludeAdmins'=>true
+			'excludeAdmins'=>false
 		);
 	}
 
@@ -68,13 +68,6 @@ class pluginSimpleStatsPlus extends Plugin {
 								'For example: On Centos 7, the command to install is "yum install rh-php72-php-intl".</div>';
 		$html .= $checkFormatter;
 		}
-		// FINALLY {
-			// $checkFormatter = '<div class="alert alert-warning" role="alert">'.
-								// 'This plugin uses PHP_Intl module: The check failed - please install PHP_Intl to see formatted numbers.<br>'.
-								// 'Google, "How do I install PHP intl extension on {your-host-os}.<br>'.
-								// 'For example: On Centos 7, the command to install is "yum install rh-php72-php-intl".</div>';
-		// $html .= $checkFormatter;
-		// }
 
 		$html .= '<div class="divTable" style="width: 100%;" ><div class="divTableBody"><div class="divTableRow">';
 			// Define ongoing running total counter
@@ -255,8 +248,32 @@ class pluginSimpleStatsPlus extends Plugin {
 		$uniqueVisitorsThisMonth	= $this->getUniqueVisitorCount($firstDateOfThisThisMonth, 'Monthly');
 
 		// Get the running totals
+
 		$runningTotalsFile			= $this->workspace().'running-totals.json';
-		$runningTotalsArray			= json_decode(file_get_contents($runningTotalsFile),TRUE);
+
+		IF (is_file($runningTotalsFile) AND is_readable($runningTotalsFile)) {		
+			$runningTotalsArray			= json_decode(file_get_contents($runningTotalsFile),TRUE);
+		}
+		ELSE {
+			if (!file_exists($runningTotalsFile) ) {
+				
+				TRY {
+					$runningTotalsArray['runningTotals'] = array('pageCounter' => 0 );
+					$json = json_encode( $runningTotalsArray );		//Encode the array back into a JSON string.
+					file_put_contents($runningTotalsFile, $json);	//Save the file.
+
+					$error =  'Initilising the runningTotalsFile file - you should not see this again.';
+					$this->addErrorLog($error);					
+				}
+				CATCH (Exception $e)
+				{
+						// The runningTotalsFile file failed to be created.
+						$error =  'The runningTotalsFile file is missing - failed to create it.<BR>'.$e;
+						$this->addErrorLog($error);
+						echo 'Caught exception: '.$error.' '.$e;
+				}
+			}
+		}
 		$pageCount					= $runningTotalsArray['runningTotals']['pageCounter'];
 
 		// Try to apply local international formatting or keep as raw
@@ -644,28 +661,32 @@ EOF;
 				}
 			}
 			ELSE {
-				// We need to initiate file to start with, but not if already populated
-				$error =  'Could not read the runningTotalsFile file - it might not be there at all';
-				$this->addErrorLog($error);
-				throw new Exception($error);
+				
+				TRY // to initiate file to start with, but not if already populated
+				{
+	
+						ECHO 'Initiate file - you should not see this again';
 
-				if (!file_exists($runningTotalsFile) ) {
-					$runningTotalsArray['runningTotals'] = array(
-							'pageCounter' => 0,
-							'uniqueCounter' => 0 // not used at the moment - would need to read today's log file to determin if visitor exists
-					);
+						if (!file_exists($runningTotalsFile) ) {
+							$runningTotalsArray['runningTotals'] = array('pageCounter' => 0 );
 
-					$error =  'Initilising the runningTotalsFile file - it look like it is not there.';
-					$this->addErrorLog($error);
-					throw new Exception($error);
+							$error =  'Initilising the runningTotalsFile file - you should not see this again.';
+							$this->addErrorLog($error);
+							//throw new Exception($error);
+						}
+						else {
+							$runningTotalsArray = json_decode(file_get_contents($runningTotalsFile),TRUE);
+						}
 				}
-				else {
-					$runningTotalsArray = json_decode(file_get_contents($runningTotalsFile),TRUE);
+				CATCH (Exception $e) 
+				{
+						// The runningTotalsFile file is missing - failed to create it.
+						$error =  'The runningTotalsFile file is missing - failed to create it';
+						$this->addErrorLog($error);
+						echo 'Caught exception: '.$error;
 				}
 
 			}
-
-
 
 			// Check if array has content and write back to file
 			$testArray = array_filter($runningTotalsArray);
