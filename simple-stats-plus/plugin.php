@@ -56,10 +56,6 @@ class pluginSimpleStatsPlus extends Plugin {
 		
 		TRY{
 			$checkFormatter = $formatter->format('9999.99');
-								// '<div class="alert alert-warning" role="alert">'.
-								// 'This plugin uses PHP_Intl module: Check passed; 9999.99 displays as '.$formatter->format('9999.99').
-								// '</div>';
-			// $html .= $checkFormatter;
 		}
 		CATCH(Exception $e){
 			$checkFormatter = '<div class="alert alert-warning" role="alert">'.

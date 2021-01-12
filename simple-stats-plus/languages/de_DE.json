@@ -1,7 +1,7 @@
 {
 	"plugin-data":
 	{
-		"name": "Simple Stats",
+		"name": "Einfache Statistik Plus",
 		"description": "Zeigt die Anzahl der Besucher pro Zeitraum in Ihrem Dashboard an."
 	},
 
@@ -10,7 +10,7 @@
 	"ongoing-counter-tip": "Wenn aktiviert, wird eine laufende laufende Summe erfasst.",
 
 	"individual-page-counter-label": "Sammeln Sie Daten für einzelne Seiten:",
-	"individual-page-counter-tip": "Wenn diese Option aktiviert ist, wird für einzelne veröffentlichte Seiten eine fortlaufende Gesamtsumme erfasst, es sei denn, die Kategorie ist "Versteckt".",
+	"individual-page-counter-tip": "Wenn diese Option aktiviert ist, wird für einzelne veröffentlichte Seiten eine fortlaufende Gesamtsumme erfasst, es sei denn, die Kategorie ist 'Versteckt'.",
 
 	"show-static-page-count-label": "Statische Seitenzahl anzeigen:",
 	"show-static-page-count-tip": "Standardmäßig deaktiviert, da statische Seiten, insbesondere die Startseite, wahrscheinlich immer am häufigsten besucht werden.",
@@ -64,8 +64,8 @@
 	"tab-cont-chart-label": "Inhaltsdiagramm",
 	"tab-cont-table-label": "Inhaltstabelle",
 	"disk-usage-label": "Disk Usage",
-	"tab-page-chart-label": "Diagramm",
-	"tab-page-table-label": "Tabelle",
+	"tab-page-chart-label": "Diagramm (Top ",
+	"tab-page-table-label": "Tabelle (Top ",
 	"published-label": "Veröffentlicht",
 	"static-label": "statisch",
 	"drafts-label": "Entwurf",
