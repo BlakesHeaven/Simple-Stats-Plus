@@ -495,7 +495,7 @@ EOF;
 		return $html.PHP_EOL.$script.PHP_EOL;
 	}
 
-	public function siteBodyBegin()
+	public function siteBodyEnd()
 	{
 		global $WHERE_AM_I;
 		global $RoleName;		
