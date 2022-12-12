@@ -2,9 +2,9 @@
 	"author": "David Blake",
 	"email": "",
 	"website": "https://github.com/BlakesHeaven/Simple-Stats-Plus",
-	"version": "3.13.1",
-	"releaseDate": "2020-12-30",
+	"version": "3.14.1",
+	"releaseDate": "2022-12-12",
 	"license": "MIT",
-	"compatible": "3.10.x, 3.11.x, 3.12.x, 3.13.x",
+	"compatible": "Bludit 3.10.x - 3.14.x and php7.4 - php8.1",
 	"notes": "Originated from Bludit's Simple Stats, but includes more stastistics, charts and fixes."
 }

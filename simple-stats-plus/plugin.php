@@ -28,7 +28,7 @@ class pluginSimpleStatsPlus extends Plugin {
 			'numberOfMonthsToKeep'=>13,
 			'showContentStats'=>true,
 			'pageSessionActiveMinutes'=>5,
-			'excludeAdmins'=>false
+			'excludeAdmins'=>true
 		);
 	}
 
@@ -56,6 +56,10 @@ class pluginSimpleStatsPlus extends Plugin {
 		
 		TRY{
 			$checkFormatter = $formatter->format('9999.99');
+								// '<div class="alert alert-warning" role="alert">'.
+								// 'This plugin uses PHP_Intl module: Check passed; 9999.99 displays as '.$formatter->format('9999.99').
+								// '</div>';
+			// $html .= $checkFormatter;
 		}
 		CATCH(Exception $e){
 			$checkFormatter = '<div class="alert alert-warning" role="alert">'.
@@ -64,6 +68,13 @@ class pluginSimpleStatsPlus extends Plugin {
 								'For example: On Centos 7, the command to install is "yum install rh-php72-php-intl".</div>';
 		$html .= $checkFormatter;
 		}
+		// FINALLY {
+			// $checkFormatter = '<div class="alert alert-warning" role="alert">'.
+								// 'This plugin uses PHP_Intl module: The check failed - please install PHP_Intl to see formatted numbers.<br>'.
+								// 'Google, "How do I install PHP intl extension on {your-host-os}.<br>'.
+								// 'For example: On Centos 7, the command to install is "yum install rh-php72-php-intl".</div>';
+		// $html .= $checkFormatter;
+		// }
 
 		$html .= '<div class="divTable" style="width: 100%;" ><div class="divTableBody"><div class="divTableRow">';
 			// Define ongoing running total counter
@@ -244,7 +255,6 @@ class pluginSimpleStatsPlus extends Plugin {
 		$uniqueVisitorsThisMonth	= $this->getUniqueVisitorCount($firstDateOfThisThisMonth, 'Monthly');
 
 		// Get the running totals
-
 		$runningTotalsFile			= $this->workspace().'running-totals.json';
 
 		IF (is_file($runningTotalsFile) AND is_readable($runningTotalsFile)) {		
@@ -455,7 +465,7 @@ EOF;
 
 				if (!empty($testArray)) {
 
-					$IndividualPages = $runningTotalsArray[IndividualPages];
+					$IndividualPages = $runningTotalsArray['IndividualPages'];
 					// Sort the $IndividualPages array decending by Counter. Tip: swap return item 1 & 2 around to sort Ascending.
 					usort($IndividualPages, function ($item1, $item2) {return $item2['Counter'] <=> $item1['Counter'];});
 
@@ -466,15 +476,16 @@ EOF;
 
 					WHILE ( ($arrayIndex < $maxCanGather) AND ($shownCount < $showTopXpages) )	
 					{
-						IF ( ( ($includeStaticPageCounter) OR ($IndividualPages[$arrayKeys[$arrayIndex]][Type] <> 'static') )
-								AND ($IndividualPages[$arrayKeys[$arrayIndex]][Category] <> 'Hidden') 
-								AND ($IndividualPages[$arrayKeys[$arrayIndex]][Type] <> 'autosave') 
+						IF ( ( ($includeStaticPageCounter) OR ($IndividualPages[$arrayKeys[$arrayIndex]]['Type'] <> 'static') )
+								AND ($IndividualPages[$arrayKeys[$arrayIndex]]['Category'] <> 'Hidden') 
+								AND ($IndividualPages[$arrayKeys[$arrayIndex]]['Type'] <> 'autosave') 
 							) 
 						{
 							$shownCount++;
-							$pageLabel = $IndividualPages[$arrayKeys[$arrayIndex]][Title] .' ('. $IndividualPages[$arrayKeys[$arrayIndex]][Category].')';
-							$pageCount = $IndividualPages[$arrayKeys[$arrayIndex]][Counter];
+							$pageLabel = $IndividualPages[$arrayKeys[$arrayIndex]]['Title'] .' ('. $IndividualPages[$arrayKeys[$arrayIndex]]['Category'].')';
+							$pageCount = $IndividualPages[$arrayKeys[$arrayIndex]]['Counter'];
 							$PageData['pageData'][$pageLabel] = $pageCount;
+
 						}
 						$arrayIndex++;
 					}
@@ -585,6 +596,7 @@ EOF;
 			$lines += substr_count(fread($handle, 8192), PHP_EOL);
 		}
 		@fclose($handle);
+
 		return $lines;
 	}
 
@@ -644,10 +656,10 @@ EOF;
 						$runningTotalsArray['runningTotals']['pageCounter'] = $resetOngoingCounterValue;
 					}
 
-					$runningTotalsArray[IndividualPages][$pageTitleHash]['Title'] = $pageTitle;
-					$runningTotalsArray[IndividualPages][$pageTitleHash]['Type'] = $pageType;
-					$runningTotalsArray[IndividualPages][$pageTitleHash]['Category'] = $category;
-					$runningTotalsArray[IndividualPages][$pageTitleHash]['Counter'] ++;
+					$runningTotalsArray['IndividualPages'][$pageTitleHash]['Title'] = $pageTitle;
+					$runningTotalsArray['IndividualPages'][$pageTitleHash]['Type'] = $pageType;
+					$runningTotalsArray['IndividualPages'][$pageTitleHash]['Category'] = $category;
+					$runningTotalsArray['IndividualPages'][$pageTitleHash]['Counter'] ++;
 			
 				}
 				ELSE {
@@ -683,6 +695,8 @@ EOF;
 				}
 
 			}
+
+
 
 			// Check if array has content and write back to file
 			$testArray = array_filter($runningTotalsArray);
