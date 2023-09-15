@@ -465,7 +465,7 @@ EOF;
 
 				if (!empty($testArray)) {
 
-					$IndividualPages = $runningTotalsArray['IndividualPages'];
+					$IndividualPages = $runningTotalsArray['IndividualPages'] ?: [];
 					// Sort the $IndividualPages array decending by Counter. Tip: swap return item 1 & 2 around to sort Ascending.
 					usort($IndividualPages, function ($item1, $item2) {return $item2['Counter'] <=> $item1['Counter'];});
 
@@ -893,14 +893,14 @@ EOF;
 		<script>
 
 			new Chartist.Bar(".ct-chart-content", {
-			  labels: ' . json_encode(array_keys($ContentData['chartData'])) . ',
-			  series: ' . json_encode(array_values($ContentData['chartData'])) . '
+			  labels: ' . json_encode(array_keys($ContentData['chartData'] ?: [])) . ',
+			  series: ' . json_encode(array_values($ContentData['chartData'] ?: [])) . '
 			}, 
 			{'.$chartsOptions.'});
 
 			new Chartist.Bar(".ct-chart-page", {
-			  labels: ' . json_encode(array_keys($PageData['pageData'])) . ',
-			  series: ' . json_encode(array_values($PageData['pageData'])) . '
+			  labels: ' . json_encode(array_keys($PageData['pageData'] ?: [])) . ',
+			  series: ' . json_encode(array_values($PageData['pageData'] ?: [])) . '
 			}, 
 			{'.$chartsOptions.'});
 
